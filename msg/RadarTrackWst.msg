@@ -1,0 +1,2 @@
+string vid
+Radar radar

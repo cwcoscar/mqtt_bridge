@@ -1,0 +1,26 @@
+<launch>
+  <arg name="use_tls" default="true" />
+  <node name="mqtt_bridge_wistron" pkg="mqtt_bridge" type="mqtt_bridge_node.py" output="screen">
+    <rosparam command="delete" param="" />
+    <rosparam command="load" file="$(find mqtt_bridge)/config/wst_pub.yaml" />
+    <rosparam if="$(arg use_tls)" command="load" ns="mqtt" file="$(find mqtt_bridge)/config/tls_params_wst.yaml" />
+  </node>
+  <node name="transfer_brake" pkg="mqtt_bridge" type="transfer_brake.py" output="screen"/>
+  <!-- <node name="transfer_DO" pkg="mqtt_bridge" type="transfer_DO.py" output="screen"/> -->
+  <node name="transfer_fuel" pkg="mqtt_bridge" type="transfer_fuel.py" output="screen"/>
+  <node name="transfer_gear" pkg="mqtt_bridge" type="transfer_gear.py" output="screen"/>
+  <node name="transfer_gnss" pkg="mqtt_bridge" type="transfer_gnss.py" output="screen"/>
+  <node name="transfer_imu" pkg="mqtt_bridge" type="transfer_imu.py" output="screen"/>
+  <node name="transfer_steering" pkg="mqtt_bridge" type="transfer_steering.py" output="screen"/>
+  <node name="transfer_throttle" pkg="mqtt_bridge" type="transfer_throttle.py" output="screen"/>
+  <node name="transfer_turn" pkg="mqtt_bridge" type="transfer_turn.py" output="screen"/>
+  <node name="transfer_vehicle_speed" pkg="mqtt_bridge" type="transfer_vehicle_speed.py" output="screen"/>
+  <node name="transfer_emergency_stop" pkg="mqtt_bridge" type="transfer_emergency_stop.py" output="screen"/>
+  <node name="transfer_driving_mode" pkg="mqtt_bridge" type="transfer_driving_mode.py" output="screen"/>
+  <node name="transfer_sensor" pkg="mqtt_bridge" type="transfer_sensor.py" output="screen"/>
+  <node name="transfer_brake_light" pkg="mqtt_bridge" type="transfer_brake_light.py" output="screen"/>
+  <node name="transfer_hex" pkg="mqtt_bridge" type="transfer_hex.py" output="screen"/>
+  <node name="convert_API" pkg="mqtt_bridge" type="convert_API.py" output="screen"/> 
+
+
+</launch>

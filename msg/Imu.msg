@@ -1,0 +1,9 @@
+string uid
+float64[] gyro
+float64 roll_rate
+float64 pitch_rate
+float64 yaw_rate
+float64[] acc
+float64[] d2dt
+uint64 timestamp 
+uint64 source_time

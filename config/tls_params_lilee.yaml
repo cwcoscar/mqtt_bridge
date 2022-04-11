@@ -1,0 +1,9 @@
+tls:
+  ca_certs: /home/meclab/catkin_ws/src/mqtt_bridge/key/lilee_certs_20211021/alpha_root_ca.pem
+  certfile: /home/meclab/catkin_ws/src/mqtt_bridge/key/lilee_certs_20211021/ncku_user.cert.pem
+  keyfile: /home/meclab/catkin_ws/src/mqtt_bridge/key/lilee_certs_20211021/ncku_user.key.pem
+  # ca_certs: /home/meclab/catkin_ws/src/mqtt_bridge/key/lilee_ncku-wayside-user/mqtt_broker_root_ca.pem
+  # certfile: /home/meclab/catkin_ws/src/mqtt_bridge/key/lilee_ncku-wayside-user/ncku_wayside_user.cert.pem
+  # keyfile: /home/meclab/catkin_ws/src/mqtt_bridge/key/lilee_ncku-wayside-user/ncku_wayside_user.key.pem
+  tls_insecure: true
+  tls_version: 5

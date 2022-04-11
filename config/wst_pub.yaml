@@ -1,0 +1,111 @@
+mqtt:
+  client:
+    protocol: 4      # MQTTv311
+  connection:
+    host: iot.stois.nchc.tw
+    port: 3051
+    keepalive: 60
+  private_path: device/001
+serializer: msgpack:dumps
+deserializer: msgpack:loads
+bridge:
+
+
+  # - factory: mqtt_bridge.bridge:MqttToRosBridge
+  #   msg_type: mqtt_bridge.msg:DetectedObjectWst
+  #   topic_from: vehicle/report/558e429c54ca
+  #   topic_to: /wsttest
+
+  ###################################Brian
+#558e429c54ca
+  # echo back  /BrakeReportWst
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: mqtt_bridge.msg:BrakeReportWst
+    topic_from: /BrakeReportWst
+    topic_to: vehicle/report/558e429c54ca
+
+  # echo back  /DetectedObjectWst
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: mqtt_bridge.msg:DetectedObjectWst
+    topic_from: /DetectedObjectWst
+    topic_to: vehicle/report/558e429c54ca
+
+  # echo back  /vehicle/fuel_level_report_wst
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: mqtt_bridge.msg:FuelLevelReportWst
+    topic_from: /vehicle/fuel_level_report_wst
+    topic_to: vehicle/report/558e429c54ca
+
+  # echo back  /vehicle/gear_report_wst
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: mqtt_bridge.msg:GearReportWst
+    topic_from: /vehicle/gear_report_wst
+    topic_to: vehicle/report/558e429c54ca
+
+  # echo back  /novatel/gps_wst
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: mqtt_bridge.msg:GPSFixWst
+    topic_from: /novatel/gps_wst
+    topic_to: vehicle/report/558e429c54ca
+
+  # echo back  /novatel/imu_wst
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: mqtt_bridge.msg:ImuWst
+    topic_from: /novatel/imu_wst
+    topic_to: vehicle/report/558e429c54ca
+
+  # echo back  /RadarTrackWst
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: mqtt_bridge.msg:RadarTrackWst
+    topic_from: /RadarTrackWst
+    topic_to: vehicle/report/558e429c54ca
+
+  # echo back  /vehicle/steering_report_wst
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: mqtt_bridge.msg:SteeringReportWst
+    topic_from: /vehicle/steering_report_wst
+    topic_to: vehicle/report/558e429c54ca
+
+  # echo back  /vehicle/throttle_info_report_wst
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: mqtt_bridge.msg:ThrottleInfoReportWst
+    topic_from: /vehicle/throttle_info_report_wst
+    topic_to: vehicle/report/558e429c54ca
+
+  # echo back  /vehicle/turn_signal_cmd_wst
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: mqtt_bridge.msg:TurnSignalCmdWst
+    topic_from: /vehicle/turn_signal_cmd_wst
+    topic_to: vehicle/report/558e429c54ca
+
+  # echo back  /vehicle/steering_report_speed_wst
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: mqtt_bridge.msg:VehicleSpeedWst
+    topic_from: /vehicle/steering_report_speed_wst
+    topic_to: vehicle/report/558e429c54ca
+
+  # echo back  /EmergencyStopWst
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: mqtt_bridge.msg:EmergencyStopWst
+    topic_from: /EmergencyStopWst
+    topic_to: vehicle/report/558e429c54ca
+
+  # echo back  /DrivingModeWst
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: mqtt_bridge.msg:DrivingModeWst
+    topic_from: /DrivingModeWst
+    topic_to: vehicle/report/558e429c54ca
+
+  # echo back  /SensorStatusWst
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: mqtt_bridge.msg:SensorStatusWst
+    topic_from: /SensorStatusWst
+    topic_to: vehicle/report/558e429c54ca
+
+  # echo back  /BrakeLightReportWst
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: mqtt_bridge.msg:BrakeLightReportWst
+    topic_from: /BrakeLightReportWst
+    topic_to: vehicle/report/558e429c54ca
+
+        

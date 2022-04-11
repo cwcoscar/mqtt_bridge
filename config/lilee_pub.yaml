@@ -1,0 +1,54 @@
+mqtt:
+  client:
+    protocol: 4      # MQTTv311
+  connection:
+    host: mqtt-broker.alpha.lileesystems.com
+    port: 8883 
+    keepalive: 60
+  private_path: device/001
+serializer: msgpack:dumps
+deserializer: msgpack:loads
+bridge:
+
+  # - factory: mqtt_bridge.bridge:MqttToRosBridge
+  #   msg_type: mqtt_bridge.msg:DetectedObjectWst
+  #   topic_from: roadside/smartrsu/4t68QO37WBd1pf
+  #   topic_to: /wsttest
+
+  # - factory: mqtt_bridge.bridge:MqttToRosBridge
+  #   msg_type: mqtt_bridge.msg:Lilee_DO_array
+  #   topic_from: wayside/report/objects/s0
+  #   topic_to: /lilee_s0_DO
+  
+  - factory: mqtt_bridge.bridge:MqttToRosBridge
+    msg_type: autoware_msgs.msg:DetectedObjectArray
+    topic_from: wayside/report/objects/s0
+    topic_to: /lilee_s0_DO
+
+  - factory: mqtt_bridge.bridge:MqttToRosBridge
+    msg_type: mqtt_bridge.msg:Lilee_SPaT
+    topic_from: wayside/report/spat/s0/event
+    topic_to: /lilee_s0_spat
+
+  - factory: mqtt_bridge.bridge:MqttToRosBridge
+    msg_type: mqtt_bridge.msg:Lilee_motc
+    topic_from: wayside/report/motc/s0/live
+    topic_to: /lilee_s0_motc
+
+
+
+
+  ###################################Brian
+#558e429c54ca
+  # echo back  /BrakeReportWst
+  - factory: mqtt_bridge.bridge:RosToMqttBridge
+    msg_type: mqtt_bridge.msg:Lilee_gps
+    topic_from: /lilee_gnss
+    topic_to: vehicle/report/ncku/1
+  
+  - factory: mqtt_bridge.bridge:MqttToRosBridge
+    msg_type: mqtt_bridge.msg:Lilee_gps
+    topic_from: vehicle/report/ncku/1
+    topic_to: /lilee_gnss_echo
+
+

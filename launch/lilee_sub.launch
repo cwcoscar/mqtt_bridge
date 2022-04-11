@@ -1,0 +1,22 @@
+<!---->
+<launch>
+
+  <arg name="use_tls" default="true" />
+  <node name="mqtt_bridge_lilee" pkg="mqtt_bridge" type="mqtt_bridge_node.py" output="screen">
+    <rosparam command="delete" param="" />
+    <rosparam command="load" file="$(find mqtt_bridge)/config/lilee_pub.yaml" />
+    <rosparam if="$(arg use_tls)" command="load" ns="mqtt" file="$(find mqtt_bridge)/config/tls_params_lilee_RSU.yaml" />
+  </node>
+  <node name="transfer_Lilee_gps" pkg="mqtt_bridge" type="transfer_Lilee_gps.py" output="screen"/>
+  <node name="transfer_Lilee2autoware_DO" pkg="mqtt_bridge" type="transfer_Lilee2autoware_DO.py" output="screen"/>
+
+  <node pkg="tf" type="static_transform_publisher" name="map_to_lilee_RSU" args="6591.2776445538457 -8175.3253598162573 -62.801640525175117 0 0 0 /map /lilee_RSU 10" />
+
+  <node pkg="detected_objects_visualizer" type="visualize_detected_objects" name="lileeRSU_detect_visualization_s0"
+          output="screen" ns="/lileeRSU/s0">
+      <param name="objects_src_topic" value="/objects"/>
+      <rosparam param="box_color">[51,204,86,0.8]</rosparam>
+
+  </node>
+  
+</launch>

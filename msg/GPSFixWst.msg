@@ -1,0 +1,2 @@
+string vid
+Gnss gnss

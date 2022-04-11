@@ -1,0 +1,13 @@
+BrakeReportWst brake
+DetectedObjectWst DO
+FuelLevelReportWst fuel
+GearReportWst gear
+GPSFixWst gnss
+ImuWst imu
+RadarTrackWst radar
+SteeringReportWst steering
+ThrottleInfoReportWst throttle
+TurnSignalCmdWst turn
+VehicleSpeedWst vehiclespeed
+DrivingModeWst drivingmode
+SensorStatusWst sensorstatus

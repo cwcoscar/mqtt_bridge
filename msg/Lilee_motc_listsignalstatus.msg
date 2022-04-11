@@ -1,0 +1,16 @@
+string Direction
+string Status
+uint32 TrafficRedCount
+uint32 TrafficYellowCount
+uint32 TrafficGreenCount
+uint32 PedestrianCount
+string[] SignalLight
+string Red
+string Yellow
+string Green
+string TurnLeftGreen
+string StraightGreen
+string TurnRightGreen
+string PedestrianGreen
+string PedestrianRed
+string PedestrianFlash

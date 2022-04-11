@@ -1,0 +1,50 @@
+<launch>
+  <arg name="use_tls" default="true" />
+  <node name="mqtt_bridge" pkg="mqtt_bridge" type="mqtt_bridge_node.py" output="screen">
+    <rosparam command="delete" param="" />
+    <rosparam command="load" file="$(find mqtt_bridge)/config/wst_pub.yaml" />
+    <rosparam if="$(arg use_tls)" command="load" ns="mqtt" file="$(find mqtt_bridge)/config/tls_params_wst.yaml" />
+  </node>
+  <node name="transfer_brake" pkg="mqtt_bridge" type="transfer_brake.py" output="screen"/>
+  <node name="transfer_DO" pkg="mqtt_bridge" type="transfer_DO.py" output="screen"/>
+  <node name="transfer_fuel" pkg="mqtt_bridge" type="transfer_fuel.py" output="screen"/>
+  <node name="transfer_gear" pkg="mqtt_bridge" type="transfer_gear.py" output="screen"/>
+  <node name="transfer_gnss" pkg="mqtt_bridge" type="transfer_gnss.py" output="screen"/>
+  <node name="transfer_imu" pkg="mqtt_bridge" type="transfer_imu.py" output="screen"/>
+  <!--node name="transfer_radar" pkg="mqtt_bridge" type="transfer_radar_old.py" output="screen"/-->
+  <node name="transfer_steering" pkg="mqtt_bridge" type="transfer_steering.py" output="screen"/>
+  <node name="transfer_throttle" pkg="mqtt_bridge" type="transfer_throttle.py" output="screen"/>
+  <node name="transfer_turn" pkg="mqtt_bridge" type="transfer_turn.py" output="screen"/>
+  <node name="transfer_vehicle_speed" pkg="mqtt_bridge" type="transfer_vehicle_speed.py" output="screen"/>
+  <node name="transfer_emergency_stop" pkg="mqtt_bridge" type="transfer_emergency_stop.py" output="screen"/>
+  <node name="transfer_driving_mode" pkg="mqtt_bridge" type="transfer_driving_mode.py" output="screen"/>
+  <node name="transfer_sensor" pkg="mqtt_bridge" type="transfer_sensor.py" output="screen"/>
+  <node name="transfer_brake_light" pkg="mqtt_bridge" type="transfer_brake_light.py" output="screen"/>
+  <node name="transfer_hex" pkg="mqtt_bridge" type="transfer_hex.py" output="screen"/>
+  <node name="convert_API" pkg="mqtt_bridge" type="convert_API.py" output="screen"/>
+
+  <node name="throttle_01" pkg="topic_tools" type="throttle" output="screen" args="messages /vehicle/steering_report_speed_wst 10"/>
+  <node name="throttle_02" pkg="topic_tools" type="throttle" output="screen" args="messages /vehicle/fuel_level_report_wst 10"/>
+  <node name="throttle_03" pkg="topic_tools" type="throttle" output="screen" args="messages /novatel/imu_wst 10"/>
+  <node name="throttle_04" pkg="topic_tools" type="throttle" output="screen" args="messages /novatel/gps_wst 10"/>
+  <node name="throttle_05" pkg="topic_tools" type="throttle" output="screen" args="messages /vehicle/gear_report_wst 10"/>
+  <node name="throttle_06" pkg="topic_tools" type="throttle" output="screen" args="messages /BrakeReportWst 10"/>
+  <node name="throttle_07" pkg="topic_tools" type="throttle" output="screen" args="messages /vehicle/throttle_info_report_wst 10"/>
+  <node name="throttle_08" pkg="topic_tools" type="throttle" output="screen" args="messages /vehicle/turn_signal_cmd_wst 10"/>
+  <node name="throttle_09" pkg="topic_tools" type="throttle" output="screen" args="messages /vehicle/steering_report_wst 10"/>
+  <node name="throttle_10" pkg="topic_tools" type="throttle" output="screen" args="messages /DetectedObjectWst 10"/>
+  <!--node name="throttle_11" pkg="topic_tools" type="throttle" output="screen" args="messages /RadarTrackWst 10"/-->
+  <node name="throttle_12" pkg="topic_tools" type="throttle" output="screen" args="messages /DrivingModeWst 10"/>
+  <node name="throttle_13" pkg="topic_tools" type="throttle" output="screen" args="messages /SensorStatus 10"/>
+  <node name="throttle_14" pkg="topic_tools" type="throttle" output="screen" args="messages /BrakeLightReportWst 10"/>
+
+  <node pkg="tf"  type="static_transform_publisher" name="world_to_map" args="0 0 0 0 0 0 /world /map 10" />
+  <node pkg="tf"  type="static_transform_publisher" name="map_to_rsu" args="-8143.967120926286 6680.803488258056 62.344460318392976 0 0 245 /map /rsu 10" />
+  <node pkg="tf"  type="static_transform_publisher" name="baselink_to_camera" args="2.14 0 0.5 0 0 0 /base_link /camera 10" />
+  <node name="processor" pkg="mqtt_bridge" type="assign.py" output="screen">
+  </node>
+  <node name="draw" pkg="mqtt_bridge" type="draw.py" output="screen">
+  </node>
+  <node name="tf_broadcaster" pkg="mqtt_bridge" type="tf_broadcast.py" output="screen">
+  </node>
+</launch>

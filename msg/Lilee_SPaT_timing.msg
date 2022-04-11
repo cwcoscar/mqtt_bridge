@@ -1,0 +1,2 @@
+uint32 startTime
+uint32 minEndTime

@@ -1,0 +1,9 @@
+<launch>
+  <arg name="use_tls" default="true" />
+  <node name="mqtt_bridge" pkg="mqtt_bridge" type="mqtt_bridge_node.py" output="screen">
+    <rosparam command="delete" param="" />
+    <rosparam command="load" file="$(find mqtt_bridge)/config/lilee_pub.yaml" />
+    <rosparam if="$(arg use_tls)" command="load" ns="mqtt" file="$(find mqtt_bridge)/config/tls_params_lilee.yaml" />
+  </node>
+  <node name="transfer_Lilee_gps" pkg="mqtt_bridge" type="transfer_Lilee_gps.py" output="screen"/>
+</launch>

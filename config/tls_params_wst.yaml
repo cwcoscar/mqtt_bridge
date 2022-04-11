@@ -1,0 +1,5 @@
+tls:
+  ca_certs: /home/meclab/catkin_ws/src/mqtt_bridge/key/cert_mkz/ca.crt
+  certfile: /home/meclab/catkin_ws/src/mqtt_bridge/key/cert_mkz/client.crt
+  keyfile: /home/meclab/catkin_ws/src/mqtt_bridge/key/cert_mkz/client.key  
+  tls_insecure: true
