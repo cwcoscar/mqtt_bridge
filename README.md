@@ -38,9 +38,8 @@ This limitation can be overcome by defining custom bridge class, though.
     - `$ chmod +x *`
     
 ### Add package `radar_msgs`
-
-    - [Reference](http://docs.ros.org/en/kinetic/api/radar_msgs/html/index-msg.html)
-    - [Download link](https://drive.google.com/drive/folders/15obW24PpzWEXgLuNPfCYz6D5MvhLGR3z?usp=sharing)
+[Reference](http://docs.ros.org/en/kinetic/api/radar_msgs/html/index-msg.html)
+[Download link](https://drive.google.com/drive/folders/15obW24PpzWEXgLuNPfCYz6D5MvhLGR3z?usp=sharing)
     
 ### **Usage Description :**
 #### **From ROS publishing to MQTT :**
