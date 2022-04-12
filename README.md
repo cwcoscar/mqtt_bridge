@@ -24,6 +24,19 @@ $ sudo apt-get install mosquitto mosquitto-clients
 $ pip install -r requirements.txt
 ```
 
+- [pymap3d >= 1.5.1](https://pypi.org/project/pymap3d/1.5.1/)
+        `$ pip install pymap3d==1.5.1`
+- [inject >= 3.5.4](https://pypi.org/project/Inject/)
+        `$ pip install Inject==3.5.4`
+- [paho-mqtt >= 1.3.1](https://pypi.org/project/paho-mqtt/)
+        `$ pip install paho-mqtt==1.3.1`
+- [msgpack >= 1.0.2](https://pypi.org/project/msgpack/)
+        `$ pip install msgpack==1.0.2`
+- [bson>=0.5.2](https://pypi.org/project/bson/)
+        `$ pip install bson==0.5.2`
+- [pymongo>=3.8.0](https://pypi.org/project/pymongo/)
+        `$ pip install pymongo==3.8.0`
+
 ### launch node
 
 ``` bash
