@@ -9,8 +9,70 @@ mqtt_bridge provides a functionality to bridge between ROS and MQTT in bidirecti
 
 This limitation can be overcome by defining custom bridge class, though.
 
+## Requirement for connecting and subscribing topics from Lilee and Wistron broker
 
-## Demo
+### Install python modules
+
+#### check
+- [pymap3d >= 1.5.1](https://pypi.org/project/pymap3d/1.5.1/)
+
+`$ pip install pymap3d==1.5.1`
+- [inject >= 3.5.4](https://pypi.org/project/Inject/)
+
+`$ pip install Inject==3.5.4`
+- [paho-mqtt >= 1.3.1](https://pypi.org/project/paho-mqtt/)
+        
+`$ pip install paho-mqtt==1.3.1`
+- [msgpack >= 1.0.2](https://pypi.org/project/msgpack/)
+
+`$ pip install msgpack==1.0.2`
+- [bson>=0.5.2](https://pypi.org/project/bson/)
+
+`$ pip install bson==0.5.2`
+- [pymongo>=3.8.0](https://pypi.org/project/pymongo/)
+
+`$ pip install pymongo==3.8.0`
+
+### Make scripts to be executable
+    - `$ cd /home/meclab/catkin_ws/src/mqtt_bridge/scripts`
+    - `$ chmod +x *`
+    
+### Add package `radar_msgs`
+
+    - [Reference](http://docs.ros.org/en/kinetic/api/radar_msgs/html/index-msg.html)
+    - [Download link](https://drive.google.com/drive/folders/15obW24PpzWEXgLuNPfCYz6D5MvhLGR3z?usp=sharing)
+    
+### **Usage Description :**
+#### **From ROS publishing to MQTT :**
+    - Revise the file `/home/meclab/catkin_ws/src/mqtt_bridge/config/wst_pub.yaml`
+    ```yaml
+    factory: mqtt_bridge.bridge:MqttToRosBridge
+    msg_type: mqtt_bridge.msg:DetectedObjectWst
+    *topic_from: (MQTT_topic)
+    *topic_to: (ROS_topic)
+    ```
+    
+#### **From MQTT publishing to ROS :**
+    - Revise the file `/home/meclab/catkin_ws/src/mqtt_bridge/config/wst_pub.yaml`
+    ```yaml
+        factory: mqtt_bridge.bridge:MqttToRosBridge
+        msg_type: mqtt_bridge.msg:DetectedObjectWst
+        *topic_from: (ROS_topic)
+        *topic_to: (MQTT_topic)
+    ```
+<!--     - Add subscriber in the code `/home/meclab/catkin_ws/src/mqtt_bridge/src/mqtt_bridge/app.py`
+    ```python
+    def _on_connect(client, userdata, flags, response_code):
+        rospy.loginfo('MQTT connected')
+        print('response_code', response_code)
+        client.subscribe("vehicle/report/475e30c916c8")
+        client.subscribe("vehicle/report/dev89dcbcc5df1c2")
+        client.subscribe("vehicle/report/558e429c54ca")
+        client.subscribe("roadside/smartrsu/4t68QO37WBd1pf")
+        **client.subscribe(MQTT_topic)**
+    ``` -->
+
+## Demo of setting up your broker
 
 ### prepare MQTT broker and client
 
@@ -23,19 +85,6 @@ $ sudo apt-get install mosquitto mosquitto-clients
 ```bash
 $ pip install -r requirements.txt
 ```
-
-- [pymap3d >= 1.5.1](https://pypi.org/project/pymap3d/1.5.1/)
-        `$ pip install pymap3d==1.5.1`
-- [inject >= 3.5.4](https://pypi.org/project/Inject/)
-        `$ pip install Inject==3.5.4`
-- [paho-mqtt >= 1.3.1](https://pypi.org/project/paho-mqtt/)
-        `$ pip install paho-mqtt==1.3.1`
-- [msgpack >= 1.0.2](https://pypi.org/project/msgpack/)
-        `$ pip install msgpack==1.0.2`
-- [bson>=0.5.2](https://pypi.org/project/bson/)
-        `$ pip install bson==0.5.2`
-- [pymongo>=3.8.0](https://pypi.org/project/pymongo/)
-        `$ pip install pymongo==3.8.0`
 
 ### launch node
 
